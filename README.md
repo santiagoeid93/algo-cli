@@ -1,5 +1,7 @@
 ## Algo CLI
 
+![algo-cli banner](assets/global/banner.png)
+
 Algo CLI is a command-line tool designed to help you practice and implement algorithmic challenges in TypeScript. It provides a modular structure for adding, running, and testing algorithm problems, making it easy to extend and contribute new challenges.
 
 ### Features
