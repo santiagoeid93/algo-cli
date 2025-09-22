@@ -1,0 +1,17 @@
+{
+  "name": "algo-cli",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "CLI tool to practice algorithms",
+  "main": "src/program.ts",
+  "scripts": {
+    "challenge": "node --import=tsx src/program.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Santiago Eid Dibos",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5"
+  }
+}
