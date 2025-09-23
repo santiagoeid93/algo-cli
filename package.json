@@ -13,5 +13,8 @@
   "devDependencies": {
     "@types/node": "^24.5.2",
     "tsx": "^4.20.5"
+  },
+  "dependencies": {
+    "commander": "^14.0.1"
   }
 }
