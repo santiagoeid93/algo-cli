@@ -1,10 +1,10 @@
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
-export type Challenge<U, T> = {
+export type Challenge<T, U> = {
   name: string;
   problemSet: string;
   difficulty: Difficulty;
-  solution(input: U): T;
+  solution(input: T): U;
 }
 
 export type ChallengeConfig = {
