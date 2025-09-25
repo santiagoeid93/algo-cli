@@ -1,7 +1,8 @@
 import { BaseChallenge } from "./base.ts";
 import type { ChallengeConfig } from "../types.js";
 
-export class FizzBuzzCallenge 
+export default
+  class FizzBuzzCallenge 
   extends 
   BaseChallenge<number, string[]> {
   

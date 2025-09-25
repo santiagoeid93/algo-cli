@@ -1,6 +1,9 @@
-import type { ChallengeConfig, Difficulty } from "../types.js";
+import type { Challenge, ChallengeConfig, Difficulty } from "../types.js";
 
-export abstract class BaseChallenge<T, U> {
+export
+  abstract class BaseChallenge<T, U>
+  implements
+  Challenge<T, U> {
   protected _name: string;
   protected _problemSet: string;
   protected _difficulty: Difficulty;
@@ -11,11 +14,11 @@ export abstract class BaseChallenge<T, U> {
     this._difficulty = config.difficulty;
   }
 
-  public get name(): string { return this._name; }
+  public get name() { return this._name; }
 
-  public get problemSet(): string { return this._problemSet; }
+  public get problemSet() { return this._problemSet; }
 
-  public get difficulty(): string { return this._difficulty; }
+  public get difficulty() { return this._difficulty; }
 
   public abstract solution(params: T): U;
 }
