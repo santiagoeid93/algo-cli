@@ -1,0 +1,25 @@
+{
+  "message": "Welcome to Algo CLI! What would you like to do?",
+  "choices": [
+    {
+      "name": "Start a new challenge",
+      "value": "start"
+    },
+    {
+      "name": "Test an existing challenge",
+      "value": "test"
+    },
+    {
+      "name": "View challenge solution",
+      "value": "view"
+    },
+    {
+      "name": "Delete a challenge attempt",
+      "value": "delete"
+    },
+    {
+      "name": "Exit Algo CLI",
+      "value": "exit"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import type { Challenge, FileNameMap } from '../types.js';
+import type { Challenge, CliStep } from '../types.js';
 import { getChallengeData } from '../static/index.ts';
 
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
@@ -18,9 +18,9 @@ const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
  *
  * @returns An array of objects, each with a `name` (formatted for display) and `value` (original file name).
  */
-function getAvailableChallenges(): FileNameMap[] {
+function getAvailableChallenges(): CliStep[] {
   const OMIT = ['index.ts', 'base.ts'];
-  const fileNameMap: FileNameMap[] = [];
+  const fileNameMap: CliStep[] = [];
   const files = fs.readdirSync(__dirname);
   
   const fileNames = files.filter((file: string) => !OMIT.includes(file))
