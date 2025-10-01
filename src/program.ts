@@ -1,12 +1,13 @@
 
 import { select } from "@inquirer/prompts";
 
-import { getChallengeData, getCliSteps } from "./static/index.ts";
+import { getCliSteps } from "./static/index.ts";
 import {
   getChallenge,
   getAvailableChallenges
-} from "./challenges/index.ts";
+} from "./solutions/index.ts";
 import type { Action, CliStep } from "./types.js";
+import { generateChallenge } from "./challenges/index.ts";
 
 
 (async function program(): Promise<void> {
@@ -36,12 +37,14 @@ import type { Action, CliStep } from "./types.js";
     choices
   });
  
-  if(action === 'start') { }
-  
+  if(action === 'start') {
+    const solution = await getChallenge(challenge);
+    generateChallenge(solution);
+  }
+
   if(action === 'test') { }
 
   if(action === 'view') {
-    const solution = await getChallenge(challenge);
   }
 
   if(action === 'delete') { }
