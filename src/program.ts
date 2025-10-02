@@ -7,7 +7,7 @@ import {
   getAvailableChallenges
 } from "./solutions/index.ts";
 import type { Action, CliStep } from "./types.js";
-import { generateChallenge } from "./challenges/index.ts";
+import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
 
 
 (async function program(): Promise<void> {
@@ -47,7 +47,9 @@ import { generateChallenge } from "./challenges/index.ts";
   if(action === 'view') {
   }
 
-  if(action === 'delete') { }
+  if(action === 'delete') {
+    deleteChallenge(challenge);
+  }
 
   
 }());

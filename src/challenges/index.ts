@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function _getTypeSyntaxKind(typeString: string): ts.KeywordTypeNode | ts.ArrayTypeNode {
   switch (typeString) {
-    default: return factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword);
+    default:          return factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword);
     case 'number':    return factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword);
     case 'string':    return factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
     case 'boolean':   return factory.createKeywordTypeNode(ts.SyntaxKind.BooleanKeyword);
@@ -71,7 +71,7 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
       factory.createParameterDeclaration(
         undefined,
         undefined,
-        factory.createIdentifier('params'), undefined,  _getTypeSyntaxKind(types[0])
+        factory.createIdentifier('n'), undefined,  _getTypeSyntaxKind(types[0])
       )
     ],
     /* type */ _getTypeSyntaxKind(types[1]),
@@ -105,4 +105,9 @@ function generateChallenge(content: Challenge<any, any>): void {
   fs.appendFileSync(filePath, `\n${code}\n`, 'utf-8');
 }
 
-export { generateChallenge };
+function deleteChallenge(fileName: string): void {
+  const filePath = path.resolve(__dirname, `${fileName}.ts`);
+  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+}
+
+export { deleteChallenge, generateChallenge };
