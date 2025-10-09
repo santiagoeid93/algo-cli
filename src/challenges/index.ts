@@ -10,6 +10,17 @@ const factory: ts.NodeFactory = ts.factory;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Returns a TypeScript AST node representing the type specified by the given string.
+ *
+ * Maps common type strings (such as 'number', 'string', 'boolean', 'any', 'void', 'unknown', 'never')
+ * and their array forms (e.g., 'string[]', 'number[]', 'boolean[]') to their corresponding
+ * `ts.KeywordTypeNode` or `ts.ArrayTypeNode` representations using the TypeScript factory API.
+ * If the type string does not match any known type, it defaults to `any`.
+ * @private
+ * @param typeString - The string representation of the type (e.g., 'number', 'string[]').
+ * @returns {ts.KeywordTypeNode | ts.ArrayTypeNode}
+ */
 function _getTypeSyntaxKind(typeString: string): ts.KeywordTypeNode | ts.ArrayTypeNode {
   switch (typeString) {
     default:          return factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword);
@@ -26,6 +37,18 @@ function _getTypeSyntaxKind(typeString: string): ts.KeywordTypeNode | ts.ArrayTy
   }
 }
 
+/**
+ * Extracts the type arguments from all parent classes or interfaces of class declarations
+ * found in a TypeScript source file corresponding to the given file name.
+ *
+ * This function resolves the path to a solution file, parses it using the TypeScript compiler API,
+ * and traverses its AST to find all class declarations. For each class, it inspects its heritage clauses
+ * (i.e., `extends` and `implements`) and collects the textual representation of any type arguments used.
+ * @private
+ * @param fileName - The base name (without extension) of the TypeScript file located in the `solutions` directory.
+ * @returns {string[] | []} An array of strings representing the type arguments found in the parent classes or interfaces,
+ *          or an empty array if none are found.
+ */
 function _findClassTypes(fileName: string): string[] | [] {
   const nodes: string[] = [];
   const classPath = path.resolve(__dirname, '..', `solutions/${fileName}.ts`);
@@ -61,6 +84,15 @@ function _findClassTypes(fileName: string): string[] | [] {
   return nodes;
 }
 
+/**
+ * Generates a TypeScript function expression as a string, representing a challenge function
+ * with specified parameter and return types.
+ * @private
+ * @param types - An array of type names as strings. The first element specifies the parameter type,
+ *                and the second element specifies the return type of the generated function.
+ * @param fileName - The base name of the file to use when creating the TypeScript source file context.
+ * @returns {string} The string representation of the generated function expression.
+ */
 function _generateChallengeFunc(types: string[], fileName: string): string {
   const functionDeclaration = factory.createFunctionExpression(
     /* modifiers */ undefined,
@@ -83,6 +115,18 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
   return printer.printNode(ts.EmitHint.Unspecified, functionDeclaration, file);
 }
 
+/**
+ * Generates a new TypeScript challenge file based on the provided challenge content.
+ *
+ * This function performs the following steps:
+ * 1. Creates a new file with initial metadata (name, difficulty, problem set).
+ * 2. Uses the TypeScript Compiler API to analyze the solution file and extract class types.
+ * 3. Generates a function declaration with appropriate types and appends it to the challenge file.
+ * @public
+ * @param content - The challenge metadata and solution information used to generate the file.
+ * @throws Will throw an error if no class types are found in the provided solution.
+ * @returns {void}
+ */
 function generateChallenge(content: Challenge<any, any>): void {
   const filePath = path.resolve(__dirname, `${content.name}.ts`);
   const fileContent: string = `
@@ -105,6 +149,15 @@ function generateChallenge(content: Challenge<any, any>): void {
   fs.appendFileSync(filePath, `\n${code}\n`, 'utf-8');
 }
 
+/**
+ * Deletes a challenge TypeScript file from the challenges directory.
+ *
+ * Resolves the absolute path to the file using the provided `fileName` (without extension),
+ * checks if the file exists, and deletes it if present.
+ * @public
+ * @param fileName - The base name of the challenge file (without the `.ts` extension) to delete.
+ * @returns {void}
+ */
 function deleteChallenge(fileName: string): void {
   const filePath = path.resolve(__dirname, `${fileName}.ts`);
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
