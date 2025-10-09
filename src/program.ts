@@ -1,5 +1,6 @@
 
 import util from 'util';
+import figlet from 'figlet';
 import { select } from "@inquirer/prompts";
 
 import { getCliSteps } from "./static/index.ts";
@@ -13,24 +14,21 @@ import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
 
 
 (async function program(): Promise<void> {
-  /**
-   * General flow:
-   * 
-   * I start the application
-   * I am greeted with a welcome message and prompted a selection list.
-   * I can select either:
-   *  - [ ] Start a new challenge
-   *  - [ ] Test an existing challenge
-   *  - [ ] See an existing solution
-   *  - [ ] Delete an existing challenge
-   *  - Exit application
-   */
+  // CLI Banner
+  const banner = await figlet.text('ALGO-CLI', {
+    horizontalLayout: "default",
+    verticalLayout: "default",
+    width: 80,
+    whitespaceBreak: true
+  });
+  console.log(util.styleText(['blue', 'bold'], banner), '\n');
 
+  // CLI Welcome menu
   const welcomePrompt =  getCliSteps();
   console.log(util.styleText(['blue', 'bold', 'italic'], 'π Welcome to Algo CLI! π'), '\n');
   const action: Action = await select(welcomePrompt) as Action;
   if (action === 'exit') {
-    console.log('See you later!');
+    console.log('\n', util.styleText(['blue', 'bold', 'italic'], 'π See you later! π'), '\n');
     process.exit(0);
   }
 

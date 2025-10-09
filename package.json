@@ -11,12 +11,14 @@
   "author": "Santiago Eid Dibos",
   "license": "ISC",
   "devDependencies": {
+    "@types/figlet": "^1.7.0",
     "@types/js-beautify": "^1.14.3",
     "@types/node": "^24.5.2",
     "tsx": "^4.20.5"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.8.6",
+    "figlet": "^1.9.3",
     "js-beautify": "^1.15.4",
     "typescript": "^5.9.2"
   }
