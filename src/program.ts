@@ -1,4 +1,5 @@
 
+import util from 'util';
 import { select } from "@inquirer/prompts";
 
 import { getCliSteps } from "./static/index.ts";
@@ -26,6 +27,7 @@ import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
    */
 
   const welcomePrompt =  getCliSteps();
+  console.log(util.styleText(['blue', 'bold', 'italic'], 'π Welcome to Algo CLI! π'), '\n');
   const action: Action = await select(welcomePrompt) as Action;
   if (action === 'exit') {
     console.log('See you later!');
