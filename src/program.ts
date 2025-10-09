@@ -4,7 +4,8 @@ import { select } from "@inquirer/prompts";
 import { getCliSteps } from "./static/index.ts";
 import {
   getChallenge,
-  getAvailableChallenges
+  getAvailableChallenges,
+  styleChallenge
 } from "./solutions/index.ts";
 import type { Action, CliStep } from "./types.js";
 import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
@@ -42,14 +43,19 @@ import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
     generateChallenge(solution);
   }
 
-  if(action === 'test') { }
-
   if(action === 'view') {
+    const solution = await getChallenge(challenge);
+    const styledSolution = styleChallenge(solution);
+    console.log('\n');
+    console.table({ name: solution.name, difficulty: solution.difficulty });
+    console.log('===========================');
+    console.log('Problem:\n', solution.problemSet);
+    console.log('===========================');
+    console.log('\n');
+    console.log(styledSolution);
   }
 
   if(action === 'delete') {
     deleteChallenge(challenge);
   }
-
-  
 }());
