@@ -1,5 +1,3 @@
-import util from 'util';
-
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export type Action = 'start' | 'test' | 'view' | 'delete' | 'exit';

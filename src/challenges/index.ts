@@ -127,7 +127,7 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
  * @throws Will throw an error if no class types are found in the provided solution.
  * @returns {void}
  */
-function generateChallenge(content: Challenge<any, any>): void {
+function generateChallenge(content: Challenge<unknown, unknown>): void {
   const filePath = path.resolve(__dirname, `${content.name}.ts`);
   const fileContent: string = `
     // ${content.name}

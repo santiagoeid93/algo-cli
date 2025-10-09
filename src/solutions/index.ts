@@ -106,9 +106,9 @@ function getAvailableChallenges(): CliStep[] {
  * a new instance of the challenge class with the configuration.
  *
  * @throws Will throw an error if the module cannot be imported or the class cannot be instantiated.
- * @returns {Promise<Challenge<any, any>>} A promise that resolves to an instance of the loaded challenge.
+ * @returns {Promise<Challenge<unknown, unknown>>} A promise that resolves to an instance of the loaded challenge.
  */
-async function getChallenge(fileName: string): Promise<Challenge<any, any>> {
+async function getChallenge(fileName: string): Promise<Challenge<unknown, unknown>> {
   const challengeConfig = getChallengeData(fileName);
   const filePath = path.resolve(__dirname, `${fileName}.ts`);
   const { default: Callenge } = await import(filePath);
@@ -125,7 +125,7 @@ async function getChallenge(fileName: string): Promise<Challenge<any, any>> {
  * @param challenge - The challenge object containing the solution to be styled.
  * @returns {string} A styled and formatted string representation of the challenge's solution code.
  */
-function styleChallenge(challenge: Challenge<any, any>): string {
+function styleChallenge(challenge: Challenge<unknown, unknown>): string {
   const stringifiedChallenge = challenge.solution.toString();
 
   const formattedChallenge = beautify.js(stringifiedChallenge, {
