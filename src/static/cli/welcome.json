@@ -6,10 +6,6 @@
       "value": "start"
     },
     {
-      "name": "Test an existing challenge",
-      "value": "test"
-    },
-    {
       "name": "View challenge solution",
       "value": "view"
     },
