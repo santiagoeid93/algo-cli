@@ -147,6 +147,9 @@ function generateChallenge(content: Challenge<unknown, unknown>): void {
   // Step 3: Generate the function declaration with types and append to solution file.
   const code = _generateChallengeFunc(types, content.name);
   fs.appendFileSync(filePath, `\n${code}\n`, 'utf-8');
+
+  // Step 4: Export solution
+  fs.appendFileSync(filePath, `\nexport { solution };\n`, 'utf-8');
 }
 
 /**
