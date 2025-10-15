@@ -11,6 +11,28 @@ const factory: ts.NodeFactory = ts.factory;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
+ * Formats a given challenge object into a string representation suitable for documentation.
+ *
+ * The output is a multi-line string that includes the challenge name, difficulty,
+ * and a formatted problem set, all wrapped in a comment block.
+ * @private
+ * @param content - The challenge object containing the name, difficulty, and problem set.
+ * @returns {string}
+ */
+function _formatProblemSet(content: Challenge<unknown, unknown>): string {
+  return [
+    '/**' ,
+    ' * ===================',
+    ` * ${content.name}`,
+    ` * Difficulty: ${content.difficulty} `,
+    ' * ===================',
+    `${content.problemSet.split('\n').map((step: string, idx: number) => idx === 0 ? ` * ${step}` : ` *${step}`).join('\n')}`,
+    ' */',
+    ''
+  ].join('\n');
+}
+
+/**
  * Returns a TypeScript AST node representing the type specified by the given string.
  *
  * Maps common type strings (such as 'number', 'string', 'boolean', 'any', 'void', 'unknown', 'never')
@@ -129,13 +151,7 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
  */
 function generateChallenge(content: Challenge<unknown, unknown>): void {
   const filePath = path.resolve(__dirname, `${content.name}.ts`);
-  const fileContent: string = `
-    // ${content.name}
-
-    // Difficulty: ${content.difficulty}
-    
-    // Problem Set: ${content.problemSet}
-  `;
+  const fileContent: string = _formatProblemSet(content);
 
   // Step 1: Create the file with initial content
   fs.writeFileSync(filePath, fileContent, 'utf-8');
