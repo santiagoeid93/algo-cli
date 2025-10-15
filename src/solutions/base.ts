@@ -1,4 +1,4 @@
-import type { Challenge, ChallengeConfig, Difficulty } from "../types.js";
+import type { Challenge, ChallengeConfig, Difficulty } from "../types.d.ts";
 
 export
   abstract class BaseChallenge<T, U>

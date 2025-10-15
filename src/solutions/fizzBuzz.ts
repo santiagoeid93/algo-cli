@@ -1,5 +1,5 @@
 import { BaseChallenge } from "./base.ts";
-import type { ChallengeConfig } from "../types.js";
+import type { ChallengeConfig } from "../types.d.ts";
 
 export default
   class FizzBuzzCallenge 

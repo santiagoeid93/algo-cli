@@ -4,7 +4,7 @@ import path from 'path';
 import beautify from 'js-beautify';
 import { fileURLToPath } from 'url';
 
-import type { Challenge, CliStep, TextStyles } from '../types.js';
+import type { Challenge, CliStep, TextStyles } from '../types.d.ts';
 import { getChallengeData } from '../static/index.ts';
 
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));

@@ -9,7 +9,7 @@ import {
   getAvailableChallenges,
   styleChallenge
 } from "./solutions/index.ts";
-import type { Action, CliStep } from "./types.js";
+import type { Action, CliStep } from "./types.d.ts";
 import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
 
 

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import type { ChallengeConfig, CliPrompt } from '../types.js';
+import type { ChallengeConfig, CliPrompt } from '../types.d.ts';
 
 function _getFile(fileName: string, folder: string): string {
   const __dirname = path.dirname(fileURLToPath(import.meta.url)); 
