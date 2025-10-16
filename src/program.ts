@@ -1,5 +1,5 @@
 
-import util from 'util';
+import util from 'node:util';
 import figlet from 'figlet';
 import { select } from "@inquirer/prompts";
 

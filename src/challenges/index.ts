@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from 'path';
+import fs from 'node:fs';
 import ts from "typescript";
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import type { Challenge } from "../types.d.ts";
 

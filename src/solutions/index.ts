@@ -1,8 +1,8 @@
-import fs from 'fs';
-import util from "util";
-import path from 'path';
+import fs from 'node:fs';
+import util from 'node:util';
+import path from 'node:path';
 import beautify from 'js-beautify';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 import type { Challenge, CliStep, TextStyles } from '../types.d.ts';
 import { getChallengeData } from '../static/index.ts';
