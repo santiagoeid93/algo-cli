@@ -7,9 +7,10 @@
   "scripts": {
     "challenge": "node --import=tsx src/program.ts",
     "test:solution": "IS_CHALLENGE=false vitest",
-     "test:challenge": "IS_CHALLENGE=true vitest",
+    "test:challenge": "IS_CHALLENGE=true vitest",
     "lint": "eslint . --config eslint.config.ts",
-    "lint:fix": "eslint . --ext .ts,.js,.json --fix"
+    "lint:fix": "eslint . --ext .ts,.js,.json --fix",
+    "contribute": "node --import=tsx scripts/createSolution.ts"
   },
   "author": "Santiago Eid Dibos",
   "license": "ISC",
