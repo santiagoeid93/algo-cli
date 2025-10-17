@@ -39,12 +39,14 @@ function _stopSpinner(intervalId: NodeJS.Timeout) {
  * @public
  * @param startMessage - The message to display when the spinner starts.
  * @param callback - The function to execute after the spinner runs.
+ * @param loadTime - Loading time for the spinner animation.
  * @param endMessage - (Optional) The message to display when the spinner stops.
  * @returns {Promise<void>}
  */
 async function loadSpinner(
   startMessage: string,
   callback: () => unknown,
+  loadTime: number = 2000,
   endMessage?: string
 ): Promise<void> {
   const frames: string[] = ['▖', '▘', '▝', '▗'];
@@ -55,7 +57,7 @@ async function loadSpinner(
     _stopSpinner(interval);
     if (endMessage) console.log(endMessage);
     callback();
-  }, 2000);
+  }, loadTime);
 }
 
 export { loadSpinner };
