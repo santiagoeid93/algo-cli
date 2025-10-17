@@ -22,4 +22,10 @@ function getCliSteps(): CliPrompt {
   return JSON.parse(steps);
 }
 
-export { getChallengeData, getCliSteps };
+function getConfirmationPrompt(): CliPrompt {
+  const config = _getFile('confirmDelete', 'cli');
+  if (!config) throw new Error('Couldn\'t find CLI confirmation config.');
+  return JSON.parse(config);
+}
+
+export { getChallengeData, getCliSteps, getConfirmationPrompt };

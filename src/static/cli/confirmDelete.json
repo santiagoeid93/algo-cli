@@ -1,0 +1,13 @@
+{
+  "message": "Are you sure you want to delete this challenge?",
+  "choices": [
+    {
+      "name": "Yes",
+      "value": "yes"
+    },
+    {
+      "name": "No",
+      "value": "no"
+    }
+  ]
+}
