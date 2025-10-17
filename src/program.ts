@@ -3,13 +3,14 @@ import util from 'node:util';
 import figlet from 'figlet';
 import { select } from "@inquirer/prompts";
 
-import { getCliSteps } from "./static/index.ts";
+import { getCliSteps, getConfirmationPrompt } from "./static/index.ts";
 import {
   getChallenge,
   getAvailableChallenges,
   styleChallenge
 } from "./solutions/index.ts";
-import type { Action, CliStep } from "./types.d.ts";
+import type { Action, CliStep, DeleteFile } from "./types.d.ts";
+import { loadSpinner } from '../utils/cliSpinner.ts';
 import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
 
 
@@ -40,22 +41,43 @@ import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
  
   if(action === 'start') {
     const solution = await getChallenge(challenge);
-    generateChallenge(solution);
+    await loadSpinner(
+      'Generating challenge...',
+      () => { generateChallenge(solution) },
+      2000,
+      `✅ ${challenge} file created in the Challenges folder!`
+    )
   }
 
   if(action === 'view') {
     const solution = await getChallenge(challenge);
     const styledSolution = styleChallenge(solution);
-    console.log('\n');
-    console.table({ name: solution.name, difficulty: solution.difficulty });
-    console.log('===========================');
-    console.log('Problem:\n', solution.problemSet);
-    console.log('===========================');
-    console.log('\n');
-    console.log(styledSolution);
+
+    await loadSpinner(
+      'Fetching solution...',
+      () => {
+        console.log('\n');
+        console.table({ name: solution.name, difficulty: solution.difficulty });
+        console.log('===========================');
+        console.log('Problem:\n', solution.problemSet);
+        console.log('===========================');
+        console.log('\n');
+        console.log(styledSolution);
+      }
+    )
   }
 
   if(action === 'delete') {
-    deleteChallenge(challenge);
+    const prompt = getConfirmationPrompt();
+    const confirmation: DeleteFile = await select(prompt) as DeleteFile;
+    
+    if (confirmation === 'yes') {
+      await loadSpinner(
+        'Deleting challenge...',
+        () => { deleteChallenge(challenge) },
+        1500,
+        '✅ Challenge deleted!'
+      );
+    }
   }
 }());

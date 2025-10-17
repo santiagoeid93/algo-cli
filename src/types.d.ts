@@ -2,6 +2,8 @@ export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export type Action = 'start' | 'test' | 'view' | 'delete' | 'exit';
 
+export type DeleteFile = 'yes' | 'no';
+
 export type Challenge<T, U> = {
   name: string;
   problemSet: string;
