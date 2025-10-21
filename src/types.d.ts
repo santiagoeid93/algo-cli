@@ -4,14 +4,14 @@ export type Action = 'start' | 'test' | 'view' | 'delete' | 'exit';
 
 export type DeleteFile = 'yes' | 'no';
 
-export type Challenge<T, U> = {
+export type Solution<T, U> = {
   name: string;
   problemSet: string;
   difficulty: Difficulty;
   solution(input: T): U;
 }
 
-export type ChallengeConfig = {
+export type SolutionConfig = {
   name: string;
   problemSet: string;
   difficulty: Difficulty;

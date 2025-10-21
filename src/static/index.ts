@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { ChallengeConfig, CliPrompt } from '../types.d.ts';
+import type { SolutionConfig, CliPrompt } from '../types.d.ts';
 
 function _getFile(fileName: string, folder: string): string {
   const __dirname = path.dirname(fileURLToPath(import.meta.url)); 
@@ -10,8 +10,8 @@ function _getFile(fileName: string, folder: string): string {
   return fs.readFileSync(filePath, 'utf-8');
 }
 
-function getChallengeData(fileName: string): ChallengeConfig {
-  const config = _getFile(fileName, 'challenges');
+function getSolutionData(fileName: string): SolutionConfig {
+  const config = _getFile(fileName, 'solutions');
   if (!config) throw new Error(`Couldn't find config file: ${fileName}.`);
   return JSON.parse(config);
 }
@@ -28,4 +28,4 @@ function getConfirmationPrompt(): CliPrompt {
   return JSON.parse(config);
 }
 
-export { getChallengeData, getCliSteps, getConfirmationPrompt };
+export { getSolutionData, getCliSteps, getConfirmationPrompt };

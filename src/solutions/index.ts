@@ -4,8 +4,8 @@ import path from 'node:path';
 import beautify from 'js-beautify';
 import { fileURLToPath } from 'node:url';
 
-import type { Challenge, CliStep, TextStyles } from '../types.d.ts';
-import { getChallengeData } from '../static/index.ts';
+import type { Solution, CliStep, TextStyles } from '../types.d.ts';
+import { getSolutionData } from '../static/index.ts';
 
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,7 +18,7 @@ const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
  * @param formattedString - The input string to be styled.
  * @returns {string} The styled string with appropriate text styles applied to recognized keywords and operators.
  */
-function _styleChallenge(formattedString: string): string {
+function _styleSolution(formattedString: string): string {
   const keyWordMap: {[key: string]: TextStyles} = {
     solution: ['redBright', 'bold'],
     if: 'red',
@@ -58,7 +58,7 @@ function _styleChallenge(formattedString: string): string {
 }
 
 /**
- * Retrieves a list of available challenge files in the current directory, excluding specified files.
+ * Retrieves a list of available solution files in the current directory, excluding specified files.
  *
  * @remarks
  * This function reads all TypeScript files in the directory, omitting those listed in the `OMIT` array.
@@ -68,7 +68,7 @@ function _styleChallenge(formattedString: string): string {
  *
  * @returns {CliStep} An array of objects, each with a `name` (formatted for display) and `value` (original file name).
  */
-function getAvailableChallenges(): CliStep[] {
+function getAvailableSolutions(): CliStep[] {
   const OMIT = ['index.ts', 'base.ts'];
   const fileNameMap: CliStep[] = [];
   const files = fs.readdirSync(__dirname);
@@ -96,39 +96,39 @@ function getAvailableChallenges(): CliStep[] {
 };
 
 /**
- * Dynamically imports and instantiates a challenge class based on the provided file name.
+ * Dynamically imports and instantiates a solution class based on the provided file name.
  *
- * @param fileName - The name of the challenge file (without extension) to load.
+ * @param fileName - The name of the solution file (without extension) to load.
  *
  * @remarks
- * This function retrieves the challenge configuration using `getChallengeData`,
- * resolves the file path, dynamically imports the challenge module, and returns
- * a new instance of the challenge class with the configuration.
+ * This function retrieves the solution configuration using `getSolutionData`,
+ * resolves the file path, dynamically imports the solution module, and returns
+ * a new instance of the solution class with the configuration.
  *
  * @throws Will throw an error if the module cannot be imported or the class cannot be instantiated.
- * @returns {Promise<Challenge<unknown, unknown>>} A promise that resolves to an instance of the loaded challenge.
+ * @returns {Promise<solution<unknown, unknown>>} A promise that resolves to an instance of the loaded solution.
  */
-async function getChallenge(fileName: string): Promise<Challenge<unknown, unknown>> {
-  const challengeConfig = getChallengeData(fileName);
+async function getSolution(fileName: string): Promise<Solution<unknown, unknown>> {
+  const solutionConfig = getSolutionData(fileName);
   const filePath = path.resolve(__dirname, `${fileName}.ts`);
-  const { default: Callenge } = await import(filePath);
-  return new Callenge(challengeConfig);
+  const { default: Solution } = await import(filePath);
+  return new Solution(solutionConfig);
 };
 
 /**
- * Formats and styles the solution code of a given challenge.
+ * Formats and styles the solution code of a given solution.
  *
- * This function takes a `Challenge` object, stringifies its `solution` property,
+ * This function takes a `solution` object, stringifies its `solution` property,
  * beautifies the resulting code string for improved readability, and then applies
- * additional styling using the `_styleChallenge` function.
+ * additional styling using the `_styleSolution` function.
  * @public
- * @param challenge - The challenge object containing the solution to be styled.
- * @returns {string} A styled and formatted string representation of the challenge's solution code.
+ * @param solution - The solution object containing the solution to be styled.
+ * @returns {string} A styled and formatted string representation of the solution's solution code.
  */
-function styleChallenge(challenge: Challenge<unknown, unknown>): string {
-  const stringifiedChallenge = challenge.solution.toString();
+function styleSolution(solution: Solution<unknown, unknown>): string {
+  const stringifiedSolution = solution.solution.toString();
 
-  const formattedChallenge = beautify.js(stringifiedChallenge, {
+  const formattedSolution = beautify.js(stringifiedSolution, {
     indent_size: 2,
     space_in_empty_paren: true,
     end_with_newline: true,
@@ -137,7 +137,7 @@ function styleChallenge(challenge: Challenge<unknown, unknown>): string {
     indent_empty_lines: true
   });
 
-  return _styleChallenge(formattedChallenge);
+  return _styleSolution(formattedSolution);
 }
 
-export { getChallenge, getAvailableChallenges, styleChallenge };
+export { getSolution, getAvailableSolutions, styleSolution };

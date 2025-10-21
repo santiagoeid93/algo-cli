@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeAll } from "vitest";
 
-import type { ChallengeConfig } from "../../../src/types.d.ts";
-import { getChallengeData } from '../../../src/static/index.ts';
+import type { SolutionConfig } from "../../../src/types.d.ts";
+import { getSolutionData } from '../../../src/static/index.ts';
 
 let solution: (n: number) => string[];
 
@@ -11,8 +11,8 @@ describe('Fizz Buzz', () => {
     const { IS_CHALLENGE } = process.env;
     if (IS_CHALLENGE && IS_CHALLENGE !== 'true') {
       const FizzBuzz = await import('../../../src/solutions/fizzBuzz.ts');
-      const challengeConfig: ChallengeConfig = getChallengeData('fizzBuzz');
-      ({ solution } = new FizzBuzz.default(challengeConfig));
+      const solutionConfig: SolutionConfig = getSolutionData('fizzBuzz');
+      ({ solution } = new FizzBuzz.default(solutionConfig));
     } else {
       ({ solution } = await import('../../../src/challenges/fizzBuzz.ts'));
       if (!solution) throw new Error('Challenge has not been attempted yet!');

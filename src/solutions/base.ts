@@ -1,14 +1,14 @@
-import type { Challenge, ChallengeConfig, Difficulty } from "../types.d.ts";
+import type { Solution, SolutionConfig, Difficulty } from "../types.d.ts";
 
 export
-  abstract class BaseChallenge<T, U>
+  abstract class BaseSolution<T, U>
   implements
-  Challenge<T, U> {
+  Solution<T, U> {
   protected _name: string;
   protected _problemSet: string;
   protected _difficulty: Difficulty;
 
-  constructor(protected config: ChallengeConfig) {
+  constructor(protected config: SolutionConfig) {
     this._name = config.name;
     this._problemSet = config.problemSet;
     this._difficulty = config.difficulty;

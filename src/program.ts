@@ -5,13 +5,13 @@ import { select } from "@inquirer/prompts";
 
 import { getCliSteps, getConfirmationPrompt } from "./static/index.ts";
 import {
-  getChallenge,
-  getAvailableChallenges,
-  styleChallenge
+  getSolution,
+  getAvailableSolutions,
+  styleSolution
 } from "./solutions/index.ts";
 import type { Action, CliStep, DeleteFile } from "./types.d.ts";
 import { loadSpinner } from '../utils/cliSpinner.ts';
-import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
+import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
 
 
 (async function program(): Promise<void> {
@@ -33,25 +33,25 @@ import { deleteChallenge, generateChallenge } from "./challenges/index.ts";
     process.exit(0);
   }
 
-  const choices: CliStep[] = getAvailableChallenges();
+  const choices: CliStep[] = getAvailableSolutions();
   const challenge: string = await select({
     message: 'Select a challenge:',
     choices
   });
  
   if(action === 'start') {
-    const solution = await getChallenge(challenge);
+    const solution = await getSolution(challenge);
     await loadSpinner(
       'Generating challenge...',
-      () => { generateChallenge(solution) },
+      () => { generateChallengeFrom(solution) },
       2000,
       `✅ ${challenge} file created in the Challenges folder!`
     )
   }
 
   if(action === 'view') {
-    const solution = await getChallenge(challenge);
-    const styledSolution = styleChallenge(solution);
+    const solution = await getSolution(challenge);
+    const styledSolution = styleSolution(solution);
 
     await loadSpinner(
       'Fetching solution...',

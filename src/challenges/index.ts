@@ -149,7 +149,7 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
  * @throws Will throw an error if no class types are found in the provided solution.
  * @returns {void}
  */
-function generateChallenge(content: Challenge<unknown, unknown>): void {
+function generateChallengeFrom(content: Challenge<unknown, unknown>): void {
   const filePath = path.resolve(__dirname, `${content.name}.ts`);
   const fileContent: string = _formatProblemSet(content);
 
@@ -182,4 +182,4 @@ function deleteChallenge(fileName: string): void {
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 }
 
-export { deleteChallenge, generateChallenge };
+export { deleteChallenge, generateChallengeFrom };

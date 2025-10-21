@@ -1,13 +1,13 @@
-import { BaseChallenge } from "./base.ts";
-import type { ChallengeConfig } from "../types.d.ts";
+import { BaseSolution } from "./base.ts";
+import type { SolutionConfig } from "../types.d.ts";
 
 export default
-  class FizzBuzzCallenge 
+  class FizzBuzzSolution 
   extends 
-  BaseChallenge<number, string[]> {
+  BaseSolution<number, string[]> {
   
-  constructor(challengeConfig: ChallengeConfig) {
-    super(challengeConfig);
+  constructor(solutionConfig: SolutionConfig) {
+    super(solutionConfig);
   }
 
   public solution(n: number): string[] {
