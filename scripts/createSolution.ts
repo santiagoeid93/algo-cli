@@ -12,6 +12,16 @@ const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
 
 let [, , fileName]: string[] = argv;
 
+if (!fileName) {
+  console.error(
+    util.styleText(
+      'red',
+      'Please provide a challenge name to continue. Exiting...',
+    ),
+  );
+  process.exit(1);
+}
+
 // Always transform first letter to lowercase and reform file name.
 fileName = `${fileName[0].toLowerCase()}${fileName.substring(1)}`;
 
