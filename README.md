@@ -53,10 +53,18 @@ utils/									# Utilitarian stuff for the CLI to run.
 4. This will generate a challenge with the selected name in `src/challenges/` with some preset code and details regarding the requirements.
 5. To test your solution, simply run `npm run test:challenge <yourChallengeName>`.
 
+![create-challenge-0](assets/features/create-challenge-0.jpg)
+
+![create-challenge-1](assets/features/create-challenge-1.jpg)
+
 ### Viewing a solution
 1. Execute the CLI program.
 2. Select `View challenge solution`.
 3. Select one of the available challenges.
+
+![view-challenge-0](assets/features/view-challenge-0.jpg)
+
+![view-challenge-1](assets/features/view-challenge-1.jpg)
 
 ### Deleting a challenge attempt
 1. Execute the CLI program.
@@ -65,6 +73,10 @@ utils/									# Utilitarian stuff for the CLI to run.
 
 To exit the CLI, just select `Exit Algo CLI`.
 
+![delete-challenge-0](assets/features/delete-challenge-0.jpg)
+
+![delete-challenge-1](assets/features/delete-challenge-1.jpg)
+
 ### Testing your work
 
 To run a suite of unit tests for a given challenge, just run:
@@ -72,6 +84,8 @@ To run a suite of unit tests for a given challenge, just run:
 `npm run test:challenge <fileName>`
 
 You'll be able to know if you are in the right track using this, or if the criteria for the challenge has already been satisfied.
+
+![test-challenge](assets/features/test-challenge.jpg)
 
 To test the actual solution, just run `npm run test:solution <fileName>`.
 
@@ -86,13 +100,11 @@ Feel free to contribute with your own algorithms!
 6. Add unit tests for your challenge in `test/src/solutions/<yourSolution>.test.ts`.
 7. Open a pull request with your changes.
 
+![contribute](assets/features/contribute.jpg)
+
 #### Coding Guideline
 - Use `camelCase` to name solution files.
 - Run `npm run lint` to make sure your code is up to spec with the guidelines before opening a PR.
 - Use TypeScript and follow the existing code style.
 - Place new challenge solutions in `src/solutions/` and tests in `test/src/solutions/`.
 - Keep code modular and well-documented.
-
-### License
-
-ISC License. See `LICENSE` file for details.
