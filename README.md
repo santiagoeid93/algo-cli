@@ -51,7 +51,7 @@ utils/									# Utilitarian stuff for the CLI to run.
 2. Select `Start a new challenge`.
 3. Select one of the available challenges.
 4. This will generate a challenge with the selected name in `src/challenges/` with some preset code and details regarding the requirements.
-5. To test your solution, simply run `npm run test:challenge <your_challenge_name>`.
+5. To test your solution, simply run `npm run test:challenge <yourChallengeName>`.
 
 ### Viewing a solution
 1. Execute the CLI program.
@@ -69,21 +69,21 @@ To exit the CLI, just select `Exit Algo CLI`.
 
 To run a suite of unit tests for a given challenge, just run:
 
-`npm run test:challenge <file_name>`
+`npm run test:challenge <fileName>`
 
 You'll be able to know if you are in the right track using this, or if the criteria for the challenge has already been satisfied.
 
-To test the actual solution, just run `npm run test:solution <file_name>`.
+To test the actual solution, just run `npm run test:solution <fileName>`.
 
 ### Contributing
 Feel free to contribute with your own algorithms!
 
-1. Run `npm run contribute <challenge_name>`. This will generate challenge solution, static json settings and test files.
+1. Run `npm run contribute <challengeName>`. This will generate challenge solution, static json settings and test files.
 2. Your challenge solution file will be created in `src/solutions/` (e.g., `myChallenge.ts`).
 3. Extend the `BaseChallenge` class and implement the `solution` method.
 4. Add your challenge to the CLI entry point (`src/program.ts`).
-5. Fill out the `name`, `difficulty` and `problemSet` in the auto generated json file in `static/challenges/<your_challenge>.json`.
-6. Add unit tests for your challenge in `test/src/solutions/<your_solution>.test.ts`.
+5. Fill out the `name`, `difficulty` and `problemSet` in the auto generated json file in `static/challenges/<yourChallenge>.json`.
+6. Add unit tests for your challenge in `test/src/solutions/<yourSolution>.test.ts`.
 7. Open a pull request with your changes.
 
 #### Coding Guideline

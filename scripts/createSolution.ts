@@ -42,7 +42,7 @@ function createFiles(): void {
   console.log('✅ Created challenge config file.', '\n');
 
   console.log(
-    util.styleText(LOG_STYLES, 'Thanks for contributing to Algo-CL! 👋'),
+    util.styleText(LOG_STYLES, 'Thanks for contributing to Algo-CLI! 👋'),
     '\n',
   );
 }
