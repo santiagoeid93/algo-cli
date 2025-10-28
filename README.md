@@ -91,19 +91,20 @@ To test the actual solution, just run `npm run test:solution <fileName>`.
 
 ### Contributing
 Feel free to contribute with your own algorithms!
-
-1. Run `npm run contribute <challengeName>`. This will generate challenge solution, static json settings and test files.
-2. Your challenge solution file will be created in `src/solutions/` (e.g., `myChallenge.ts`).
-3. Extend the `BaseChallenge` class and implement the `solution` method.
-4. Add your challenge to the CLI entry point (`src/program.ts`).
-5. Fill out the `name`, `difficulty` and `problemSet` in the auto generated json file in `static/challenges/<yourChallenge>.json`.
-6. Add unit tests for your challenge in `test/src/solutions/<yourSolution>.test.ts`.
-7. Open a pull request with your changes.
+1. Clone the repository and create a new contribution branch (eg. `git checkout -b <new-challenge-my-challenge>`).
+2. Run `npm run contribute <challengeName>`. This will generate challenge solution, static json settings and test files.
+3. Your challenge solution file will be created in `src/solutions/` (e.g., `myChallenge.ts`).
+4. Extend the `BaseChallenge` class and implement the `solution` method.
+5. Add your challenge to the CLI entry point (`src/program.ts`).
+6. Fill out the `name`, `difficulty` and `problemSet` in the auto generated json file in `static/challenges/<yourChallenge>.json`.
+7. Add unit tests for your challenge in `test/src/solutions/<yourSolution>.test.ts`.
+8. Open a pull request with your changes.
 
 ![contribute](assets/features/contribute.jpg)
 
 #### Coding Guideline
 - Use `camelCase` to name solution files.
+- Use [Semver](https://semver.org/) for commits.
 - Run `npm run lint` to make sure your code is up to spec with the guidelines before opening a PR.
 - Use TypeScript and follow the existing code style.
 - Place new challenge solutions in `src/solutions/` and tests in `test/src/solutions/`.
