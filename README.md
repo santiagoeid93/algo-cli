@@ -104,7 +104,7 @@ Feel free to contribute with your own algorithms!
 
 #### Coding Guideline
 - Use `camelCase` to name solution files.
-- Use [Semvber](https://semver.org/) for commits.
+- Use [Semver](https://semver.org/) for commits.
 - Run `npm run lint` to make sure your code is up to spec with the guidelines before opening a PR.
 - Use TypeScript and follow the existing code style.
 - Place new challenge solutions in `src/solutions/` and tests in `test/src/solutions/`.
