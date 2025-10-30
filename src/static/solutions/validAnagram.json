@@ -1,0 +1,5 @@
+{
+  "name": "ValidAnagram",
+  "difficulty": "easy",
+  "problemSet": "1. Two strings are considered anagrams if one can be formed by rearranging the characters of the other, using all original characters exactly once.\n 2. Given two strings s and t, return true if t is an anagram of s, and false otherwise.\n"
+}
