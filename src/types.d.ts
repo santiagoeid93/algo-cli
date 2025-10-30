@@ -4,11 +4,13 @@ export type Action = 'start' | 'test' | 'view' | 'delete' | 'exit';
 
 export type DeleteFile = 'yes' | 'no';
 
-export type Solution<T, U> = {
+// Extending an array of unknown params for a generic helps in accepting
+// multiple parameters of different types.
+export type Solution<T extends unknown[], U> = {
   name: string;
   problemSet: string;
   difficulty: Difficulty;
-  solution(input: T): U;
+  solution(...params: T): U;
 }
 
 export type SolutionConfig = {

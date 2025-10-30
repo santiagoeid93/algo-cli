@@ -4,7 +4,7 @@ import { BaseSolution } from './base.ts';
 export default
   class ReverseStringSolution
   extends
-  BaseSolution<string, string> {
+  BaseSolution<string[], string> {
   
   constructor(solutionConfig: SolutionConfig) {
     super(solutionConfig);

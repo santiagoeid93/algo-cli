@@ -1,7 +1,7 @@
 import type { Solution, SolutionConfig, Difficulty } from "../types.d.ts";
 
 export
-  abstract class BaseSolution<T, U>
+  abstract class BaseSolution<T extends unknown[], U>
   implements
   Solution<T, U> {
   protected _name: string;
@@ -20,5 +20,5 @@ export
 
   public get difficulty() { return this._difficulty; }
 
-  public abstract solution(params: T): U;
+  public abstract solution(...params: T): U;
 }

@@ -4,7 +4,7 @@ import type { SolutionConfig } from '../types.d.ts';
 export default
   class FizzBuzzSolution 
   extends 
-  BaseSolution<number, string[]> {
+  BaseSolution<number[], string[]> {
   
   constructor(solutionConfig: SolutionConfig) {
     super(solutionConfig);
