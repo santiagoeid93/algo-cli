@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * @param content - The challenge object containing the name, difficulty, and problem set.
  * @returns {string}
  */
-function _formatProblemSet(content: Challenge<unknown, unknown>): string {
+function _formatProblemSet(content: Challenge<unknown[], unknown>): string {
   return [
     '/**' ,
     ' * ===================',
@@ -149,7 +149,7 @@ function _generateChallengeFunc(types: string[], fileName: string): string {
  * @throws Will throw an error if no class types are found in the provided solution.
  * @returns {void}
  */
-function generateChallengeFrom(content: Challenge<unknown, unknown>): void {
+function generateChallengeFrom(content: Challenge<unknown[], unknown>): void {
   const filePath = path.resolve(__dirname, `${content.name}.ts`);
   const fileContent: string = _formatProblemSet(content);
 
