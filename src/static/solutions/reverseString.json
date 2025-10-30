@@ -1,0 +1,5 @@
+{
+  "name": "ReverseString",
+  "difficulty": "easy",
+  "problemSet": "1. Given a string of characters, write a function that reverses the string.\n 2. When done, return the reversed string."
+}
