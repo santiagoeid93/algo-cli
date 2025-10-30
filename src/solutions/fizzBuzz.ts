@@ -1,5 +1,5 @@
-import { BaseSolution } from "./base.ts";
-import type { SolutionConfig } from "../types.d.ts";
+import { BaseSolution } from './base.ts';
+import type { SolutionConfig } from '../types.d.ts';
 
 export default
   class FizzBuzzSolution 
