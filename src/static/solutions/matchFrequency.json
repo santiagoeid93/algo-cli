@@ -1,0 +1,5 @@
+{
+  "name": "MatchFrequency",
+  "difficulty": "easy",
+  "problemSet": "1. Write a function that takes two positive integers as parameters.\n 2. For those parameters, check whether the characters appear in the same frequency and amount. \n 3. Example: (1234, 2314) -> true; (45634, 46755) -> false;"
+}
