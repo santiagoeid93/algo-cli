@@ -28,7 +28,7 @@ function _startSpinner(frames: string[], message: string): NodeJS.Timeout {
  * @param intervalId - The interval ID returned by `setInterval` that controls the spinner animation.
  * @returns {void}
  */
-function _stopSpinner(intervalId: NodeJS.Timeout) {
+function _stopSpinner(intervalId: NodeJS.Timeout): void {
   clearInterval(intervalId);
   readline.clearLine(process.stdout, 0); // Clear the current line
   readline.cursorTo(process.stdout, 0); // Move cursor to the beginning of the line
@@ -53,11 +53,14 @@ async function loadSpinner(
   
   const interval = _startSpinner(frames, startMessage);
   
-  setTimeout(() => {
-    _stopSpinner(interval);
-    if (endMessage) console.log(endMessage);
-    callback();
-  }, loadTime);
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      _stopSpinner(interval);
+      if (endMessage) console.log(endMessage);
+      callback();
+      resolve();
+    }, loadTime);
+  });
 }
 
 export { loadSpinner };
