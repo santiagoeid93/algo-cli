@@ -6,6 +6,10 @@
       "value": "start"
     },
     {
+      "name": "Surprise me with a random challenge",
+      "value": "random"
+    },
+    {
       "name": "View challenge solution",
       "value": "view"
     },

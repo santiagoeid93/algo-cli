@@ -1,6 +1,6 @@
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
-export type Action = 'start' | 'test' | 'view' | 'delete' | 'exit';
+export type Action = 'start' | 'random' | 'test' | 'view' | 'delete' | 'exit';
 
 export type DeleteFile = 'yes' | 'no';
 

@@ -60,12 +60,11 @@ function _styleSolution(formattedString: string): string {
 /**
  * Retrieves a list of available solution files in the current directory, excluding specified files.
  *
- * @remarks
  * This function reads all TypeScript files in the directory, omitting those listed in the `OMIT` array.
  * It then transforms each file name into a more human-readable format by inserting spaces before uppercase letters
  * and capitalizing the first character. The result is an array of objects, each containing the formatted name and
  * the original file name (without the `.ts` extension).
- *
+ * @public
  * @returns {CliStep} An array of objects, each with a `name` (formatted for display) and `value` (original file name).
  */
 function getAvailableSolutions(): CliStep[] {
@@ -98,22 +97,37 @@ function getAvailableSolutions(): CliStep[] {
 /**
  * Dynamically imports and instantiates a solution class based on the provided file name.
  *
- * @param fileName - The name of the solution file (without extension) to load.
- *
- * @remarks
  * This function retrieves the solution configuration using `getSolutionData`,
  * resolves the file path, dynamically imports the solution module, and returns
  * a new instance of the solution class with the configuration.
  *
+ * @param fileName - The name of the solution file (without extension) to load.
  * @throws Will throw an error if the module cannot be imported or the class cannot be instantiated.
- * @returns {Promise<solution<unknown, unknown>>} A promise that resolves to an instance of the loaded solution.
+ * @returns {Promise<solution<unknown[], unknown>>} A promise that resolves to an instance of the loaded solution.
  */
-async function getSolution(fileName: string): Promise<Solution<unknown, unknown>> {
+async function getSolution(fileName: string): Promise<Solution<unknown[], unknown>> {
   const solutionConfig = getSolutionData(fileName);
   const filePath = path.resolve(__dirname, `${fileName}.ts`);
   const { default: Solution } = await import(filePath);
   return new Solution(solutionConfig);
 };
+
+/**
+ * Selects and returns a random solution instance from the available solutions.
+ *
+ * This function retrieves the list of available solution files, randomly selects one,
+ * and then uses `getSolution` to dynamically import and instantiate the selected solution.
+ * @public
+ * @returns {Promise<Solution<unknown[], unknown>>} A promise that resolves to an instance of the randomly selected solution.
+ */
+async function getRandomSolution(): Promise<Solution<unknown[], unknown>>  {
+  const files: CliStep[] = getAvailableSolutions();
+  const randomIndex: number = Math.floor(Math.random() * files.length);
+
+  const randomSolution: CliStep = files[randomIndex];
+
+  return await getSolution(randomSolution.value);
+}
 
 /**
  * Formats and styles the solution code of a given solution.
@@ -125,7 +139,7 @@ async function getSolution(fileName: string): Promise<Solution<unknown, unknown>
  * @param solution - The solution object containing the solution to be styled.
  * @returns {string} A styled and formatted string representation of the solution's solution code.
  */
-function styleSolution(solution: Solution<unknown, unknown>): string {
+function styleSolution(solution: Solution<unknown[], unknown>): string {
   const stringifiedSolution = solution.solution.toString();
 
   const formattedSolution = beautify.js(stringifiedSolution, {
@@ -140,4 +154,9 @@ function styleSolution(solution: Solution<unknown, unknown>): string {
   return _styleSolution(formattedSolution);
 }
 
-export { getSolution, getAvailableSolutions, styleSolution };
+export {
+  getSolution,
+  getRandomSolution,
+  getAvailableSolutions,
+  styleSolution
+};
