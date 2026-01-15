@@ -6,6 +6,7 @@ import { select } from "@inquirer/prompts";
 import { getCliSteps, getConfirmationPrompt } from "./static/index.ts";
 import {
   getSolution,
+  getRandomSolution,
   getAvailableSolutions,
   styleSolution
 } from "./solutions/index.ts";
@@ -30,6 +31,17 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
   const action: Action = await select(welcomePrompt) as Action;
   if (action === 'exit') {
     console.log('\n', util.styleText(['blue', 'bold', 'italic'], 'π See you later! π'), '\n');
+    process.exit(0);
+  }
+
+  if (action === 'random') {
+    const solution = await getRandomSolution();
+    await loadSpinner(
+      '🎲 Generating a surprise for you...',
+      () => { generateChallengeFrom(solution) },
+      2000,
+      `✅ ${solution.name} file created in the Challenges folder!`
+    )
     process.exit(0);
   }
 
