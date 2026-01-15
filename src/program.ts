@@ -47,7 +47,7 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
     // Reset flow
     await loadSpinner(
       '',
-      () => { exec: () => {} },
+      () => {},
       600,
     );
     console.log('\n');
@@ -73,7 +73,7 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
     // Reset flow
     await loadSpinner(
       '',
-      () => { exec: () => {} },
+      () => {},
       600,
     );
     console.log('\n');
@@ -103,7 +103,7 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
     // Reset flow
     await loadSpinner(
       '',
-      () => { exec: () => {} },
+      () => {},
       600,
     );
     console.log('\n');
@@ -126,7 +126,7 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
     // Reset flow
     await loadSpinner(
       '',
-      () => { exec: () => {} },
+      () => {},
       600,
     );
     console.log('\n');
