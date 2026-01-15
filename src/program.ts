@@ -3,7 +3,7 @@ import util from 'node:util';
 import figlet from 'figlet';
 import { select } from "@inquirer/prompts";
 
-import { getCliSteps, getConfirmationPrompt } from "./static/index.ts";
+import { getCliSteps, getConfirmationPrompt, getGoBackPrompt } from "./static/index.ts";
 import {
   getSolution,
   getRandomSolution,
@@ -36,13 +36,22 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
 
   if (action === 'random') {
     const solution = await getRandomSolution();
+
     await loadSpinner(
       '🎲 Generating a surprise for you...',
       () => { generateChallengeFrom(solution) },
       2000,
       `✅ ${solution.name} file created in the Challenges folder!`
     )
-    process.exit(0);
+
+    // Reset flow
+    await loadSpinner(
+      '',
+      () => {},
+      600,
+    );
+    console.log('\n');
+    await program();
   }
 
   const choices: CliStep[] = getAvailableSolutions();
@@ -53,12 +62,22 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
  
   if(action === 'start') {
     const solution = await getSolution(challenge);
+
     await loadSpinner(
       'Generating challenge...',
       () => { generateChallengeFrom(solution) },
       2000,
       `✅ ${challenge} file created in the Challenges folder!`
     )
+
+    // Reset flow
+    await loadSpinner(
+      '',
+      () => {},
+      600,
+    );
+    console.log('\n');
+    await program();
   }
 
   if(action === 'view') {
@@ -77,6 +96,18 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
         console.log(styledSolution);
       }
     )
+
+    const prompt = getGoBackPrompt();
+    await select(prompt);
+
+    // Reset flow
+    await loadSpinner(
+      '',
+      () => {},
+      600,
+    );
+    console.log('\n');
+    await program();
   }
 
   if(action === 'delete') {
@@ -91,5 +122,14 @@ import { deleteChallenge, generateChallengeFrom } from "./challenges/index.ts";
         '✅ Challenge deleted!'
       );
     }
+    
+    // Reset flow
+    await loadSpinner(
+      '',
+      () => {},
+      600,
+    );
+    console.log('\n');
+    await program();
   }
 }());

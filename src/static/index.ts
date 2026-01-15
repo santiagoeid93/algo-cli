@@ -28,4 +28,10 @@ function getConfirmationPrompt(): CliPrompt {
   return JSON.parse(config);
 }
 
-export { getSolutionData, getCliSteps, getConfirmationPrompt };
+function getGoBackPrompt(): CliPrompt {
+  const config = _getFile('goBack', 'cli');
+  if (!config) throw new Error('Couldn\'t find CLI "Go back" config.');
+  return JSON.parse(config);
+}
+
+export { getSolutionData, getCliSteps, getConfirmationPrompt, getGoBackPrompt };
