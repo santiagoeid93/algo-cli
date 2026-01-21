@@ -1,0 +1,5 @@
+{
+  "name": "FibonacciNumber",
+  "difficulty": "easy",
+  "problemSet": "1. Remember, the Fibonacci sequence definition is: the next number is the sum of the two preceding ones, starting from 0 and 1.\n 2. Write a program that, given a number (n), calculates the sequence and outputs F(n)."
+}
