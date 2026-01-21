@@ -19,7 +19,7 @@ export default class BinarySearchSolution extends BaseSolution<
     let rightPointer = numArray.length - 1;
 
     while (leftPointer <= rightPointer) {
-      let middlePoint = Math.ceil((rightPointer + leftPointer) / 2);
+      const middlePoint = Math.ceil((rightPointer + leftPointer) / 2);
 
       if (numArray[middlePoint] === searchVal) return middlePoint;
 
