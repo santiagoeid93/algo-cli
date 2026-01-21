@@ -1,0 +1,5 @@
+{
+  "name": "BinarySearch",
+  "difficulty": "easy",
+  "problemSet": "1. Write a program that accepts an array of numbers and a search target which is also a number.\n 2. Write a binary search algorithm to find said target.\n 3. If the target is found, return the index of it's position.\n 4. If the target is not found, return -1.\n 5. Remember to check if you are recieving the correct values in the parameters."
+}
