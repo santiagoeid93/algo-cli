@@ -1,0 +1,5 @@
+{
+  "name": "uniqueOcurrences",
+  "difficulty": "easy",
+  "problemSet": "1. Write a program that accepts an array of numbers or strings.\n 2. Given the array, return true if all occurences in the array are unique or false otherwise."
+}
