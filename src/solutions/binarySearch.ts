@@ -1,10 +1,11 @@
 import type { SolutionConfig } from '../types.js';
 import { BaseSolution } from './base.ts';
 
-export default class BinarySearchSolution extends BaseSolution<
-  [number[], number],
-  number
-> {
+export default
+  class BinarySearchSolution
+  extends
+  BaseSolution<[number[], number], number> {
+    
   constructor(solutionConfig: SolutionConfig) {
     super(solutionConfig);
   }

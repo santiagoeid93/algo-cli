@@ -6,6 +6,7 @@ export default
 class ValidAnagramSolution
 extends
 BaseSolution<string[], boolean> {
+
   constructor(solutionConfig: SolutionConfig) {
     super(solutionConfig);
   }
