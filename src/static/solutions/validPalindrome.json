@@ -1,0 +1,5 @@
+{
+  "name": "ValidPalindrome",
+  "difficulty": "easy",
+  "problemSet": "1. A palindrome is a word or phrase that reads the same forwards and backwars.\n 2. Write a program that takes an argument, and returns true if it's a palindrome.\n 3. Make sure to check if the argument is a string and if it is, strip it to only alpha-numeric character before the palindrome check.\n 4. Empty strings should also be considered palindromes after stripping any whitespace from them."
+}
