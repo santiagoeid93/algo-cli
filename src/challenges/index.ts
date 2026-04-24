@@ -157,7 +157,7 @@ function generateChallengeFrom(content: Challenge<unknown[], unknown>): void {
   fs.writeFileSync(filePath, fileContent, 'utf-8');
 
   // Step 2: Use the TS Compiler API to parse through the selected solution file.
-  const types = _findClassTypes(content.name);
+  const types = _findClassTypes(content.name.charAt(0).toLowerCase() + content.name.slice(1));
   if (types.length < 1) throw new Error('Can\'t build a challenge file with the provided solution.');
 
   // Step 3: Generate the function declaration with types and append to solution file.
